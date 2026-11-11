@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Crb Launcher</string>
+    <string name="screensaver_name">Clock &amp; Jadwal Sholat Cirebon</string>
+    <string name="home_key_service_name">Crb Launcher Home Key Helper</string>
+    <string name="home_key_service_desc">Redirects the remote Home and Settings buttons to Crb Launcher Home.</string>
+    <string name="input_key_service_name">Crb Launcher Input Key Helper</string>
+    <string name="input_key_service_desc">Handles the TV remote Input button and custom app shortcut keys.</string>
+
+    <string name="greeting_morning">SELAMAT PAGI</string>
+    <string name="greeting_afternoon">SELAMAT SIANG</string>
+    <string name="greeting_evening">SELAMAT SORE</string>
+    <string name="greeting_night">SELAMAT MALAM</string>
+
+    <string name="pill_prayer">Sholat Cirebon</string>
+    <string name="pill_football">Jadwal Bola</string>
+    <string name="pill_inputs">Inputs</string>
+    <string name="pill_wifi">Wi-Fi</string>
+    <string name="pill_settings">Settings</string>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Pinned Dock Apps (in order) -->
+    <string-array name="dock_apps">
+        <item>com.google.android.youtube.tv</item>
+        <item>com.google.android.youtube</item>
+        <item>com.netflix.ninja</item>
+        <item>com.vidio.android.tv</item>
+        <item>com.vidio.android</item>
+        <item>in.startv.hotstar.dplus.tv</item>
+        <item>com.amazon.amazonvideo.livingroom</item>
+        <item>com.spotify.tv.android</item>
+    </string-array>
+
+    <!-- Hidden Apps (never shown as tiles) -->
+    <string-array name="hidden_apps">
+        <item>com.crb.tv</item>
+    </string-array>
+
+    <!-- Default 1 column compact icon-rail on the left edge so background is 92% open -->
+    <integer name="columns">1</integer>
+    <integer name="rows_below_dock">4</integer>
+    <bool name="fill_dock">true</bool>
+    <bool name="dock_title">true</bool>
+    <bool name="dock_row">true</bool>
+    <bool name="dock_band">true</bool>
+    <bool name="dock_glass">true</bool>
+    <integer name="dock_opacity">60</integer>
+    <bool name="ambient_glow">false</bool>
+    <bool name="app_glow">true</bool>
+    <bool name="animations">true</bool>
+    <bool name="advanced_effects">true</bool>
+    <bool name="reduced_motion">false</bool>
+    <bool name="focus_overshoot">true</bool>
+    <bool name="always_show_names">true</bool>
+    <bool name="show_greeting">true</bool>
+    <string name="greeting_name">Cirebon</string>
+    <bool name="show_stats">false</bool>
+    <bool name="show_network_pill">true</bool>
+    <bool name="show_inputs_pill">true</bool>
+    <bool name="tile_menu">true</bool>
+    <bool name="app_library">true</bool>
+    <bool name="module_cards">true</bool>
+    <string name="clock_format">24</string>
+    <string name="background_color">#05070B</string>
+    <integer name="sky_intensity">75</integer>
+    <string name="live_tv_package"></string>
+    <string name="live_tv_action"></string>
+
+    <!-- FITUR MODIFIKASI 1: JADWAL SHOLAT KOTA CIREBON (KEMENAG RI + OFFLINE/API) -->
+    <bool name="show_prayer_times">true</bool>
+    <string name="prayer_city_name">Kota Cirebon, Jawa Barat</string>
+    <string name="prayer_latitude">-6.7320</string>
+    <string name="prayer_longitude">108.5523</string>
+    <integer name="prayer_timezone_offset">7</integer>
+    <integer name="prayer_ihtiyat_minutes">2</integer>
+    <bool name="prayer_online_sync">true</bool>
+
+    <!-- FITUR MODIFIKASI 2: JADWAL MATCH FOOTBALL MENDATANG (LIGA 1, EPL, UCL, LALIGA, SERIE A) -->
+    <bool name="show_football_schedule">true</bool>
+    <bool name="football_online_sync">true</bool>
+    <integer name="football_rotate_seconds">7</integer>
+    <string-array name="football_leagues">
+        <item>idn.1|BRI Liga 1</item>
+        <item>eng.1|Premier League</item>
+        <item>uefa.champions|Champions League</item>
+        <item>esp.1|LaLiga</item>
+        <item>ita.1|Serie A</item>
+    </string-array>
+</resources>

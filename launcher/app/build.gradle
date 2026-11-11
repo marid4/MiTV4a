@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Hapus otomatis file bawaan template AndroidIDE yang menyebabkan Duplicate resources
+delete fileTree(dir: "${projectDir}/src/main/res", includes: [
+    "mipmap-*/ic_launcher.webp",
+    "mipmap-*/ic_launcher_round.webp",
+    "mipmap-*/ic_launcher_round.png",
+    "mipmap-anydpi*/*",
+    "values/themes.xml",
+    "values-night/themes.xml",
+    "values-night/*",
+    "drawable/ic_launcher.xml",
+    "drawable/ic_banner.xml",
+    "drawable/ic_launcher_background.xml",
+    "drawable/ic_launcher_foreground.xml",
+    "drawable-v24/*"
+])
+delete "${projectDir}/src/main/java/com/gathin"
+
+android {
+    namespace 'com.crb.tv'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.crb.tv"
+        minSdk 26
+        targetSdk 34
+        versionCode 16
+        versionName "3.6-crb-launcher"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['kotlin/**', 'META-INF/*.version', 'META-INF/*.kotlin_module', 'DebugProbesKt.bin']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
+}

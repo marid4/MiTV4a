@@ -1,0 +1,20 @@
+#!/bin/sh
+# Gradle Start Up Script for UN*X / Termux / GitHub Actions
+APP_HOME=$( cd "${0%/*}" && pwd -P ) || exit
+GRADLE_VERSION="8.5"
+WRAPPER_JAR="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
+
+if command -v gradle >/dev/null 2>&1; then
+    exec gradle "$@"
+fi
+
+CACHE_DIR="${HOME}/.gradle/wrapper/dists/gradle-${GRADLE_VERSION}-bin"
+if [ ! -x "$CACHE_DIR/gradle-${GRADLE_VERSION}/bin/gradle" ]; then
+    echo "Downloading Gradle ${GRADLE_VERSION}..."
+    mkdir -p "$CACHE_DIR"
+    curl -fL "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o "$CACHE_DIR/gradle.zip"
+    unzip -q -o "$CACHE_DIR/gradle.zip" -d "$CACHE_DIR"
+    rm -f "$CACHE_DIR/gradle.zip"
+fi
+
+exec "$CACHE_DIR/gradle-${GRADLE_VERSION}/bin/gradle" -p "$APP_HOME" "$@"

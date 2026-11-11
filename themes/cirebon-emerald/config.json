@@ -1,0 +1,14 @@
+{
+  "columns": 4,
+  "rows_below_dock": 1,
+  "dock_glass": true,
+  "dock_opacity": 85,
+  "sky_intensity": 50,
+  "background_color": "#05070B",
+  "show_greeting": true,
+  "greeting_name": "Cirebon",
+  "show_prayer_times": true,
+  "prayer_city_name": "Kota Cirebon, Jawa Barat",
+  "show_football_schedule": true,
+  "clock_format": "24"
+}

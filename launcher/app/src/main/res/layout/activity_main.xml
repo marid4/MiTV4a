@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF05070B"
+    android:clipChildren="true"
+    android:clipToPadding="true">
+
+    <!-- Layer 1: Sky / Preset Wallpaper Canvas -->
+    <ImageView
+        android:id="@+id/sky_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no" />
+
+    <!-- Layer 1B: Static Custom Background Image (.jpg / .png) -->
+    <ImageView
+        android:id="@+id/custom_bg_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:importantForAccessibility="no" />
+
+    <!-- Layer 1C: Animated GIF Custom Background (.gif) -->
+    <com.crb.tv.AnimatedGifView
+        android:id="@+id/custom_bg_gif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- Layer 1D: Video Custom Background (.mp4) -->
+    <VideoView
+        android:id="@+id/custom_bg_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:visibility="gone" />
+
+    <!-- Layer 2: Ambient App Accent Glow Overlay -->
+    <ImageView
+        android:id="@+id/ambient_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:alpha="0.0"
+        android:importantForAccessibility="no" />
+
+    <!-- Layer 3: Subtle Dimming Scrim (Default 0% agar Wallpaper Cerah & Jelas) -->
+    <View
+        android:id="@+id/scrim_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000" />
+
+    <!-- Layer 4: Main Content Container -->
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="10dp"
+        android:clipChildren="true"
+        android:clipToPadding="true">
+
+        <!-- ============================================================ -->
+        <!-- BARIS 1 ATAS: JAM & CUACA KARYA MULYA + CARD LIVE FOOTBALL + CARD SHOLAT & ADZAN -->
+        <!-- ============================================================ -->
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:clipChildren="true"
+            android:clipToPadding="true">
+
+            <!-- KIRI ATAS: Jam, Tanggal, dan Cuaca Karya Mulya Kota Cirebon -->
+            <LinearLayout
+                android:id="@+id/top_left_clock_box"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/greeting_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SELAMAT PAGI | CIREBON"
+                    android:textColor="#EEFFFFFF"
+                    android:textSize="9.5sp"
+                    android:shadowColor="#CC000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
+                    android:letterSpacing="0.06"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif-medium" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="bottom"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        android:id="@+id/clock_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09:45"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="26sp"
+                        android:shadowColor="#DD000000"
+                        android:shadowDx="0"
+                        android:shadowDy="2"
+                        android:shadowRadius="4"
+                        android:fontFamily="sans-serif-light"
+                        android:singleLine="true"
+                        android:includeFontPadding="false" />
+
+                    <TextView
+                        android:id="@+id/date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="Rab, 11 Nov | Cirebon"
+                        android:textColor="#EEFFFFFF"
+                        android:textSize="9.5sp"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif" />
+                </LinearLayout>
+
+                <!-- Baris Cuaca Wilayah Karya Mulya, Kota Cirebon (Semi-Transparan) -->
+                <TextView
+                    android:id="@+id/weather_karya_mulya_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:background="#360B192C"
+                    android:text="Karya Mulya, Cirebon: 30 C | Berawan"
+                    android:textColor="#FF7DD3FC"
+                    android:textSize="9sp"
+                    android:shadowColor="#CC000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/stats_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="RAM: -- MB | Storage: -- MB"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="8sp"
+                    android:shadowColor="#CC000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:singleLine="true"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- TENGAH ATAS: Card Jadwal Sepak Bola Real dari LiveScore.mobi (Semi-Transparan) -->
+            <LinearLayout
+                android:id="@+id/football_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.96"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:background="#3D0B132B"
+                android:focusable="true"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="11dp"
+                        android:background="#FFF59E0B"
+                        android:layout_marginRight="5dp" />
+
+                    <TextView
+                        android:id="@+id/football_league_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="LIVESCORE.MOBI | LIVE &amp; HASIL"
+                        android:textColor="#FFFDE68A"
+                        android:textSize="8.5sp"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/football_status_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:text="LIVE"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="8sp"
+                        android:singleLine="true"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/football_match_teams"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Persib Bandung  2 - 1  Persija Jakarta"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="11.5sp"
+                    android:shadowColor="#DD000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="4"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/football_match_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="[LIVE 74'] Skor: 2 - 1 | Klik untuk LiveScore.mobi"
+                    android:textColor="#EEFFFFFF"
+                    android:textSize="8.5sp"
+                    android:shadowColor="#CC000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <!-- KANAN ATAS: Card Jadwal Sholat Kota Cirebon + Suara Adzan (Semi-Transparan) -->
+            <LinearLayout
+                android:id="@+id/prayer_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.22"
+                android:orientation="vertical"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:background="#3D06281E"
+                android:focusable="true"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="11dp"
+                        android:background="#FF10B981"
+                        android:layout_marginRight="5dp" />
+
+                    <TextView
+                        android:id="@+id/prayer_header_city"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SHOLAT CIREBON (ADZAN ON)"
+                        android:textColor="#FFA7F3D0"
+                        android:textSize="8.5sp"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/prayer_countdown_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Menuju Dzuhur | --:--:--"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="8sp"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:singleLine="true"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <!-- 6 Waktu Sholat Cirebon di Kanan Atas -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:id="@+id/pray_imsak"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Imsak\n04:15"
+                        android:textColor="#EEFFFFFF"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:id="@+id/pray_subuh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Subuh\n04:25"
+                        android:textColor="#FFFFFFFF"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:id="@+id/pray_dzuhur"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Dzuhur\n11:52"
+                        android:textColor="#FFFFFFFF"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:id="@+id/pray_ashar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Ashar\n15:14"
+                        android:textColor="#FFFFFFFF"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:id="@+id/pray_maghrib"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Maghrib\n17:58"
+                        android:textColor="#FFFFFFFF"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:id="@+id/pray_isya"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Isya\n19:12"
+                        android:textColor="#FFFFFFFF"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textSize="8sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ============================================================ -->
+        <!-- BARIS 2 ATAS: TOMBOL PILL HORIZONTAL (1 BARIS PENUH, TIDAK PERNAH VERTIKAL) -->
+        <!-- ============================================================ -->
+        <LinearLayout
+            android:id="@+id/top_pills_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/prayer_next_pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="Adzan ON"
+                android:textColor="#FFECFDF5"
+                android:textSize="8.5sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/football_pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="LiveScore"
+                android:textColor="#FFE0F2FE"
+                android:textSize="8.5sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/wallpaper_pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="Background"
+                android:textColor="#FFFEF3C7"
+                android:textSize="8.5sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/inputs_pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="Favorit"
+                android:textColor="#FFFFFFFF"
+                android:textSize="8.5sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/network_pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="Wi-Fi"
+                android:textColor="#FFFFFFFF"
+                android:textSize="8.5sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/settings_pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="Settings"
+                android:textColor="#FFFFFFFF"
+                android:textSize="8.5sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+        <!-- ============================================================ -->
+        <!-- BODY AREA (DI BAWAH JAM & TOMBOL ATAS): MENU GRID FAVORIT KIRI & AREA WALLPAPER UTUH -->
+        <!-- ============================================================ -->
+        <LinearLayout
+            android:id="@+id/body_split_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:clipChildren="true"
+            android:clipToPadding="true">
+
+            <!-- SIDEBAR KIRI: Hanya Berisi App Favorit, Semi-Transparan & Tidak Menutupi Jam -->
+            <FrameLayout
+                android:id="@+id/left_sidebar_panel"
+                android:layout_width="74dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <com.crb.tv.GlassView
+                    android:id="@+id/dock_glass_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <TextView
+                        android:id="@+id/sidebar_fav_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center"
+                        android:text="FAVORIT"
+                        android:textColor="#FFFDE047"
+                        android:textSize="8sp"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:letterSpacing="0.08"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/app_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:clipToPadding="true"
+                        android:clipChildren="true"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="4dp"
+                        android:scrollbars="none"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:descendantFocusability="afterDescendants" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- AREA UTAMA KANAN (100% Terbuka untuk menampilkan Wallpaper / Video secara utuh) -->
+            <RelativeLayout
+                android:id="@+id/right_showcase_area"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="14dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <!-- Info App Favorit yang sedang dipilih (Sangat Transparan agar Wallpaper Terlihat) -->
+                <LinearLayout
+                    android:id="@+id/selected_app_banner_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/dock_focus_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aplikasi Favorit"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="14.5sp"
+                        android:shadowColor="#DD000000"
+                        android:shadowDx="0"
+                        android:shadowDy="2"
+                        android:shadowRadius="6"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/dock_focus_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="OK: Buka | Tahan OK: Atur Favorit | Atas: Ke Jadwal Bola/Sholat"
+                        android:textColor="#DDFFFFFF"
+                        android:textSize="9sp"
+                        android:shadowColor="#DD000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="4" />
+                </LinearLayout>
+
+                <!-- Wrapper kompatibilitas -->
+                <LinearLayout
+                    android:id="@+id/module_cards_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- ============================================================ -->
+        <!-- BARIS BAWAH: RUNNING TEXT (TEKS BERJALAN SEMI-TRANSPARAN, BISA DIEDIT DI SETTING) -->
+        <!-- ============================================================ -->
+        <LinearLayout
+            android:id="@+id/running_text_container"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:background="#3307111E"
+            android:clickable="true"
+            android:focusable="false">
+
+            <TextView
+                android:id="@+id/running_text_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:layout_marginRight="8dp"
+                android:background="#660284C7"
+                android:text="INFO CRB"
+                android:textColor="#FFFFFFFF"
+                android:textSize="8sp"
+                android:singleLine="true"
+                android:fontFamily="sans-serif-medium" />
+
+            <com.crb.tv.RunningTextView
+                android:id="@+id/running_text_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ============================================================ -->
+    <!-- LAYER 5: IN-APP SCREEN SAVER OVERLAY (ANTI BURN-IN, TRANSPARAN DI ATAS WALLPAPER/OLED) -->
+    <!-- ============================================================ -->
+    <FrameLayout
+        android:id="@+id/screensaver_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:id="@+id/screensaver_floating_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingLeft="28dp"
+            android:paddingRight="28dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="#6607111E">
+
+            <TextView
+                android:id="@+id/screensaver_clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:45:00"
+                android:textColor="#FFFFFFFF"
+                android:textSize="54sp"
+                android:shadowColor="#EE000000"
+                android:shadowDx="0"
+                android:shadowDy="3"
+                android:shadowRadius="8"
+                android:fontFamily="sans-serif-light" />
+
+            <TextView
+                android:id="@+id/screensaver_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Rabu, 11 Nov 2026 | 30 Jumadil Awal 1448 H"
+                android:textColor="#FFFDE047"
+                android:textSize="14sp"
+                android:shadowColor="#EE000000"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/screensaver_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Menuju Dzuhur 11:52 WIB  |  Karya Mulya, Cirebon: 30 C Berawan"
+                android:textColor="#FF7DD3FC"
+                android:textSize="12.5sp"
+                android:shadowColor="#EE000000"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="4"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Crb Launcher Screen Saver - Tekan tombol apa saja untuk kembali"
+                android:textColor="#AAFFFFFF"
+                android:textSize="10sp"
+                android:shadowColor="#EE000000"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="3" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>
